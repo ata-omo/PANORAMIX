@@ -98,10 +98,13 @@ router.delete("/:id", verify, async (req, res) => {
 
 
 
-// FETCH/GET CONTENT
+// FETCH/GET CONTENT BY ID
 
 
-router.get("/:id", verify, async (req, res) => {
+router.get("/find/:id", verify, async (req, res) => {
+
+    // using /find/:id in place of /:id because
+
     //req.params returns an object which contains properties mapped to the named route (parameter) which is "id"(/:id wala) in this case.
 
     try {
@@ -115,6 +118,70 @@ router.get("/:id", verify, async (req, res) => {
 
 
 })
+
+
+
+// FETCH RANDOM CONTENT
+
+
+router.get("/random", verify, async (req, res) => {
+
+    const type = req.query.type;
+    // we are specifying the type because if someone want to search a specific type of content.
+    let content;
+    try {
+        if (type === "series") {
+            content = await Content.aggregate([
+                { $match: { isSeries: true } },
+                { $sample: { size: 1 } },
+            ]);
+        }
+        else {
+            content = await Content.aggregate([
+                { $match: { isSeries: false } },
+                { $sample: { size: 1 } }
+            ]);
+        }
+
+        res.status(201).json(content);
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+
+
+})
+
+
+
+
+
+
+
+// GET ALL CONTENTS
+
+
+router.get("/", verify, async (req, res) => {
+
+    if (req.user.isAdmin) {
+
+        try {
+            const contents = await Content.find();
+
+            res.status(200).json(contents);
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
+
+    }
+    else {
+        res.status(403).json("Please mind your own business you cannot delete any content :)")
+    }
+})
+
+
+
 
 
 

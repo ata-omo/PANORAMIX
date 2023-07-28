@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoute = require("./routes/authenticate");
 const userRoute = require("./routes/users");
-const contentRoute = require("./routes/contents");;
+const contentRoute = require("./routes/contents");
+const rowRoute = require("./routes/rows");
 
 
 app.use(express.json());
@@ -32,6 +33,7 @@ mongoose.connect(process.env.MONGO_URL,
 app.use("/backend/authenticate", authRoute);
 app.use("/backend/users", userRoute);
 app.use("/backend/contents", contentRoute);
+app.use("/backend/rows", rowRoute);
 
 
 
