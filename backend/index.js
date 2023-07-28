@@ -1,7 +1,14 @@
 const express = require("express");
-const mongoose= require("mongoose");
+const app = express();
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const authRoute= require("./routes/authenticate")
+const authRoute = require("./routes/authenticate");
+const userRoute = require("./routes/users");
+const contentRoute = require("./routes/contents");;
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 dotenv.config();
@@ -14,21 +21,21 @@ mongoose.connect(process.env.MONGO_URL,
     // useCreateIndex : true,
   }
 )
-.then(()=>console.log("database connected successfully.."))
-.catch(err=>console.log(err));
+  .then(() => console.log("database connected successfully.."))
+  .catch(err => console.log(err));
 
 
 //database connected
 
 
 
-const app = express();
-
-
-app.use(express.json());
 app.use("/backend/authenticate", authRoute);
+app.use("/backend/users", userRoute);
+app.use("/backend/contents", contentRoute);
+
+
 
 //thank you "npx kill-port 5500"
-app.listen(5500,()=>{
-    console.log("hello server");
+app.listen(5500, () => {
+  console.log("hello server");
 });

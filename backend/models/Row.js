@@ -11,4 +11,4 @@ const RowSchema = new mongoose.Schema({
 );
 
 
-module.export = mongoose.model("Row", RowSchema);
+module.exports = mongoose.model("Row", RowSchema);
