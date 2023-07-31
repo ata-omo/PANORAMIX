@@ -39,8 +39,9 @@ const Card = () => {
           <div className="cardinfo">
 
             <div className="icons">
-              <PlayCircleIcon />
-              <AddIcon />
+              <PlayCircleIcon className="icon play"/>
+              <span>Play</span>
+              <AddIcon className="icon add"/>
 
             </div>
 
@@ -48,17 +49,20 @@ const Card = () => {
 
             <div className="about">
               <span className="name">Awesome Movie</span>
-              <span className='year'>1947</span>
-              <span className='duration'>2 hours 20 mins</span>
-              <span className='agelimit'>+14</span>
+              <span className="year abut">1947</span>
+              <span className="duration abut">2 hours 20 mins</span>
+              <span className="agelimit abut">14+</span>
+              {/* <span className="genre">Action</span> */}
 
-              <div className="genre">Action</div>
+              <div className="genre">
+                <span className="type">Action</span>
+              </div>
             </div>
 
 
 
             <div className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, eveniet.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, enim accusamus earum ducimus magnam exercitationem.
             </div>
 
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import "./home.scss"
-import Navbar from '../Components/navbar/Navbar'
-import Featuring from '../Components/featuring/Featuring'
-import Row from '../Components/row/Row'
+import Navbar from '../../Components/navbar/Navbar'
+import Featuring from '../../Components/featuring/Featuring'
+import Row from '../../Components/row/Row'
 
 
 const Home = () => {
