@@ -5,11 +5,11 @@ import Featuring from '../../Components/featuring/Featuring'
 import Row from '../../Components/row/Row'
 
 
-const Home = () => {
+const Home = ({type}) => {
   return (
     <div className='home'>
       <Navbar />
-      <Featuring />
+      <Featuring type={type} class/>
       <Row title={"Continue watching"} />
       <Row title={"Trending"} />
       <Row title={"title 3"} />

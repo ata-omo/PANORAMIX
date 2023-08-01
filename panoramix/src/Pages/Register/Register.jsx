@@ -10,8 +10,13 @@ const Register = () => {
 
     const apiKey = '54b465ea2c4c75b19ce5b54be723132a';
 
+
+    useEffect(() => {
+        fetchRandomMovieImage();
+    }, []);
+
     const [email, setEmail] = useState("");
-    const [password, setPassword]= useState("");
+    const [password, setPassword] = useState("");
 
     const emailRef = useRef();
     const passRef = useRef();
@@ -20,14 +25,9 @@ const Register = () => {
         setEmail(emailRef.current.value);
     }
 
-    const handleFinish= ()=>{
+    const handleFinish = () => {
         setPassword(passRef.current.value);
     }
-
-
-    useEffect(() => {
-        fetchRandomMovieImage();
-    }, []);
 
 
 
