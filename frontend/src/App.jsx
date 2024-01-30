@@ -1,0 +1,61 @@
+import './App.scss'
+import { BrowserRouter as Router ,Route, Routes, Navigate} from 'react-router-dom';
+import Home from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Watch from './Pages/Watch/Watch';
+import { firebaseAuth } from './utils/Firebase/fireConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+
+function App() {
+ 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    // Cleanup the subscription when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+
+  return (
+
+    <Router>
+      <Routes>
+        <Route exact path="/" element={user ? < Home /> : <Navigate replace to={"/register"} />} />
+
+        <Route path="/register" element={!user ? < Register /> : <Navigate replace to={"/"} />} />
+
+        <Route path="/login" element={!user ? < Login /> : <Navigate replace to={"/"} />} />
+        <Route path="/movies" element={!user ? < Login /> : <Home type="movies" />} />
+        <Route path="/series" element={!user ? < Login /> : <Home type="series" />} />
+        <Route path="/watch" element={!user ? < Login /> : <Watch/>} />
+
+        {/* {user &&
+          <>
+            <Route path="/movies" element={<Home type="movies" />} />
+            <Route path="/series" element={<Home type="series" />} />
+
+            <Route path="/watch" element={<Watch />} />
+          </>
+        } */}
+
+        {/* <Route path="/" element={< Home/>} />
+        <Route path="/register" element={< Register />} />
+        <Route path="/login" element={< Login />} />
+        <Route path="/movies" element={< Home type= {"movies"} />} />
+        <Route path="/series" element={< Home type= {"series"}/>} />
+        <Route path="/watch" element={< Watch />} /> */}
+
+        
+      </Routes>
+    </Router>
+    
+  )
+}
+
+export default App
