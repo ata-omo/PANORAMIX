@@ -4,7 +4,7 @@ import Card from '../rowitem/Card'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const Row = ({title}) => {
+const Row = ({title,data}) => {
 
   // const [moved,setMoved]= useState(false)
   const [slideCount,setSlideCount]= useState(0)
@@ -30,6 +30,7 @@ const Row = ({title}) => {
     // console.log(distance)
 
   }
+  // console.log("some",data);
 
 
 
@@ -41,19 +42,13 @@ const Row = ({title}) => {
       <div className="wrapper">
         <ArrowBackIosIcon className='arrow left' onClick={()=> handleClick("left")} style={{display : slideCount<=0 && "none"}}/>
         <div className="items" ref={listRef}>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
+
+          {data.map((movie, index) => {
+            // console.log("hola",movie);
+            // console.log(index);
+            return <Card itemData={movie} index={index} key={movie.id} />;
+          })}
+
         </div>
         <ArrowForwardIosIcon className='arrow right' onClick={()=> handleClick("right")} style={{display : slideCount===8 && "none"}}/>
       </div>

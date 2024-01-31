@@ -5,8 +5,12 @@ import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import featuringImg from '../../assets/featuringTempImage.png';
 import featuringTitle from '../../assets/featuringTempTitle.png';
+import { useNavigate } from 'react-router-dom';
 
 const Featuring = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="featuring">
       {/* <img src="https://drive.google.com/uc?export=view&id=1mlAV1f1RnP3MEvVg9rS6jjJEVmvNGB3W" alt="" className='frontwala'/> */}
@@ -19,7 +23,7 @@ const Featuring = () => {
         <span className="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
 
         <div className="buttons">
-          <button className="play">
+          <button className="play" onClick={()=>navigate("/watch")}>
             <PlayCircleIcon className='icon'/>
             <span>Play</span>
           </button>

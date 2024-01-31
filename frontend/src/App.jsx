@@ -26,13 +26,13 @@ function App() {
 
     <Router>
       <Routes>
-        <Route exact path="/" element={user ? < Home /> : <Navigate replace to={"/register"} />} />
+        <Route exact path="/" element={user ? < Home content="all"/> : <Navigate replace to={"/register"} />} />
 
         <Route path="/register" element={!user ? < Register /> : <Navigate replace to={"/"} />} />
 
         <Route path="/login" element={!user ? < Login /> : <Navigate replace to={"/"} />} />
-        <Route path="/movies" element={!user ? < Login /> : <Home type="movies" />} />
-        <Route path="/series" element={!user ? < Login /> : <Home type="series" />} />
+        <Route path="/movies" element={!user ? < Login /> : <Home content="movies" />} />
+        <Route path="/series" element={!user ? < Login /> : <Home content="series" />} />
         <Route path="/watch" element={!user ? < Login /> : <Watch/>} />
 
         {/* {user &&

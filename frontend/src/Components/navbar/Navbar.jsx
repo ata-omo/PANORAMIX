@@ -9,9 +9,12 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { firebaseAuth } from '../../utils/Firebase/fireConfig';
 import { signOut } from 'firebase/auth';
+import logo from '../../assets/panoramixLogo.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataByGenre } from '../../Store/slices';
 
 
-const Navbar = () => {
+const Navbar = ({displayGenre}) => {
 
 
   const [scroll, setScroll] = useState(false);
@@ -38,16 +41,51 @@ const Navbar = () => {
       }
   }
 
+
+  const genreList = useSelector((state)=>{
+    return state.panoramix.genres;
+  })
+
+  const dispatch = useDispatch();
+
+
+  const [showGenreDropdown, setShowGenreDropdown] = useState(false);
+
+  const toggleGenreDropdown = () => {
+    setShowGenreDropdown(!showGenreDropdown);
+  }
+
+
   return (
     <div className={scroll ? "navbar dusra" : "navbar"}>
       <div className="container">
         <div className="left">
-          <img src="https://drive.google.com/uc?export=view&id=1ZGXdRSpcTRvGAN1FdsG3ersRUYwZnpJb" alt="logo..." />
+          <img src={logo} alt="logo..." />
         
           <Link to="/" className='link'><span>Home</span></Link>
           <Link to="/movies" className='link'><span>Movies</span></Link>
           <Link to="/series" className='link'><span>Series</span></Link>
-          <span>Trending</span>
+          {(displayGenre==="movie" || displayGenre ==="tv")?
+          (<span onMouseEnter={toggleGenreDropdown}>
+            <a>Categories</a>
+            <div className="categories">
+                  {genreList.map((currGenre) => (
+                    <span key={currGenre.id} value={currGenre.id} onClick={
+                      (e)=>{
+                        e.preventDefault();
+
+                        dispatch(fetchDataByGenre({
+                          genres:genreList,
+                          genre: currGenre,
+                          type: displayGenre,
+                        }));
+                        // console.log(currGenre, displayGenre);
+                      }
+                    }>{currGenre.name}</span>
+                  ))}
+                </div>
+            </span>)
+          :null}
           <span>Favourites</span>
         </div>
         <div className="right">
