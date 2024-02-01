@@ -85,6 +85,33 @@ export const fetchMovies = createAsyncThunk(
 );
 
 
+export const removeFromFavourite = createAsyncThunk(
+  "panoramix/delete",
+  async ({ movieId, email }) => {
+    console.log(typeof(movieId));
+    const {
+      data: { movies },
+    } = await axios.put("http://localhost:8800/panoramix/v1/user/remove", {
+      email,
+      movieId,
+    });
+    return movies;
+  }
+);
+
+
+export const getAllFavourites = createAsyncThunk(
+  "panoramix/get-favourites",
+  async (email) => {
+    const {
+      data: { movies },
+    } = await axios.get("http://localhost:8800/panoramix/v1/user/favourites",{
+      email,
+    });
+    return movies;
+  }
+);
+
 
 
 // creating slice
@@ -105,6 +132,19 @@ export const PanoramixSlice = createSlice({
         builder.addCase(fetchDataByGenre.fulfilled, (state, action) => {
           state.movies = action.payload;
         });
+
+        builder.addCase(getAllFavourites.fulfilled, (state, action) => {
+          state.movies = action.payload;
+        });
+        builder.addCase(removeFromFavourite.fulfilled, (state, action) => {
+          state.movies = action.payload;
+          console.log("remove fulfilled",state);
+        });
+        builder.addCase(removeFromFavourite.rejected, (state, action) => {
+          console.error("Error in removeFromFavourite:", action.error);
+        });
+        
+
       },
 });
 

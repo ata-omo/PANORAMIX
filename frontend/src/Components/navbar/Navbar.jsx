@@ -49,11 +49,11 @@ const Navbar = ({displayGenre}) => {
   const dispatch = useDispatch();
 
 
-  const [showGenreDropdown, setShowGenreDropdown] = useState(false);
+  // const [showGenreDropdown, setShowGenreDropdown] = useState(false);
 
-  const toggleGenreDropdown = () => {
-    setShowGenreDropdown(!showGenreDropdown);
-  }
+  // const toggleGenreDropdown = () => {
+  //   setShowGenreDropdown(!showGenreDropdown);
+  // }
 
 
   return (
@@ -66,8 +66,8 @@ const Navbar = ({displayGenre}) => {
           <Link to="/movies" className='link'><span>Movies</span></Link>
           <Link to="/series" className='link'><span>Series</span></Link>
           {(displayGenre==="movie" || displayGenre ==="tv")?
-          (<span onMouseEnter={toggleGenreDropdown}>
-            <a>Categories</a>
+          (<span>
+            <a >Categories</a>
             <div className="categories">
                   {genreList.map((currGenre) => (
                     <span key={currGenre.id} value={currGenre.id} onClick={

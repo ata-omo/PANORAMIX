@@ -35,23 +35,6 @@ function App() {
         <Route path="/series" element={!user ? < Login /> : <Home content="series" />} />
         <Route path="/watch" element={!user ? < Login /> : <Watch/>} />
 
-        {/* {user &&
-          <>
-            <Route path="/movies" element={<Home type="movies" />} />
-            <Route path="/series" element={<Home type="series" />} />
-
-            <Route path="/watch" element={<Watch />} />
-          </>
-        } */}
-
-        {/* <Route path="/" element={< Home/>} />
-        <Route path="/register" element={< Register />} />
-        <Route path="/login" element={< Login />} />
-        <Route path="/movies" element={< Home type= {"movies"} />} />
-        <Route path="/series" element={< Home type= {"series"}/>} />
-        <Route path="/watch" element={< Watch />} /> */}
-
-        
       </Routes>
     </Router>
     
