@@ -7,6 +7,7 @@ import Watch from './Pages/Watch/Watch';
 import { firebaseAuth } from './utils/Firebase/fireConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import Favourites from './Pages/Favourites/Favourites';
 
 function App() {
  
@@ -34,6 +35,7 @@ function App() {
         <Route path="/movies" element={!user ? < Login /> : <Home content="movies" />} />
         <Route path="/series" element={!user ? < Login /> : <Home content="series" />} />
         <Route path="/watch" element={!user ? < Login /> : <Watch/>} />
+        <Route path="/favourites" element={!user ? < Login /> : <Favourites />}/>
 
       </Routes>
     </Router>

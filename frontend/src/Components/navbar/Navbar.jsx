@@ -86,7 +86,7 @@ const Navbar = ({displayGenre}) => {
                 </div>
             </span>)
           :null}
-          <span>Favourites</span>
+          <Link to="/favourites" className='link'><span>Favourites</span></Link>
         </div>
         <div className="right">
 

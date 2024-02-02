@@ -9,7 +9,8 @@ import { API_KEY,TMDB_BASE_URL } from "../utils/constants";
 const initialState={
   movies:[],
   genresLoaded: false,
-  genres:[]
+  genres:[],
+  favourites:[],
 }
 
 // some utility functions for data management
@@ -101,13 +102,13 @@ export const removeFromFavourite = createAsyncThunk(
 
 
 export const getAllFavourites = createAsyncThunk(
-  "panoramix/get-favourites",
+  "panoramix/favourites",
   async (email) => {
-    const {
-      data: { movies },
-    } = await axios.get("http://localhost:8800/panoramix/v1/user/favourites",{
-      email,
-    });
+    const {data:{movies}} = await axios.get(`http://localhost:8800/panoramix/v1/user/favourites/${email}`);
+
+    // console.log("movies",movies);
+    // console.log("email",email)
+  
     return movies;
   }
 );
@@ -134,12 +135,12 @@ export const PanoramixSlice = createSlice({
         });
 
         builder.addCase(getAllFavourites.fulfilled, (state, action) => {
-          state.movies = action.payload;
+          state.favourites = action.payload;
         });
-        builder.addCase(removeFromFavourite.fulfilled, (state, action) => {
-          state.movies = action.payload;
-          console.log("remove fulfilled",state);
-        });
+        // builder.addCase(removeFromFavourite.fulfilled, (state, action) => {
+        //   state.movies = action.payload;
+        //   console.log("remove fulfilled",state);
+        // });
         builder.addCase(removeFromFavourite.rejected, (state, action) => {
           console.error("Error in removeFromFavourite:", action.error);
         });

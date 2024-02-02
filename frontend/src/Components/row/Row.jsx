@@ -50,7 +50,7 @@ const Row = ({title,data}) => {
           })}
 
         </div>
-        <ArrowForwardIosIcon className='arrow right' onClick={()=> handleClick("right")} style={{display : slideCount===8 && "none"}}/>
+        <ArrowForwardIosIcon className='arrow right' onClick={()=> handleClick("right")} style={{display : slideCount===15 && "none"}}/>
       </div>
     </div>
   )

@@ -12,7 +12,7 @@ import axios from "axios";
 import { onAuthStateChanged} from "firebase/auth";
 import { firebaseAuth } from "../../utils/Firebase/fireConfig";
 
-const Card = ({itemData,index}) => {
+const Card = ({itemData,index,isLiked=false}) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -21,6 +21,8 @@ const Card = ({itemData,index}) => {
   const navigate = useNavigate();
   
   const [isFavourite, setIsFavourite] = useState(false);
+
+  // setIsFavourite(isLiked);
 
   const [email, setEmail] = useState(undefined);
 
@@ -99,7 +101,7 @@ const Card = ({itemData,index}) => {
             <div className="icons">
               <PlayCircleIcon className="icon play" onClick={()=>navigate("/watch")}/>
               <span>Play</span>
-              {isFavourite?
+              {(isFavourite|| isLiked)?
               (<PlaylistAddCheckIcon className="icon add" onClick={toggleAdd}/>)
               :(<AddIcon className="icon add" onClick={toggleAdd}/>)}
 
