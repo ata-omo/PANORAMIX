@@ -3,7 +3,7 @@ import {removeFromFavourite, addToFavourite, getFavourites} from '../controllers
 
 const userRouter = Router();
 
-userRouter.route("/favourites").get(getFavourites);
+userRouter.route("/favourites/:email").get(getFavourites);
 userRouter.route("/add").post(addToFavourite);
 userRouter.route("/remove").put(removeFromFavourite);
 

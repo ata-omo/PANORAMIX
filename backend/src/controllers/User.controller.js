@@ -2,7 +2,7 @@ import { User } from "../models/User.model.js";
 
 const getFavourites = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email } = req.params;
     const user = await User.findOne({ email });
     if (user) {
       return res.json({ msg: "success", movies: user.favourites });
