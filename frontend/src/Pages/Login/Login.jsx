@@ -27,6 +27,8 @@ const Login = () => {
                 `${TMDB_BASE_URL}/movie/popular?api_key=${API_KEY}`
             );
 
+            console.log("hello", response.data.results);
+
             const randomMovieIndex = Math.floor(
                 Math.random() * response.data.results.length
             );

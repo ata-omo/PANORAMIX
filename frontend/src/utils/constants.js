@@ -1,4 +1,7 @@
-export const API_KEY = '54b465ea2c4c75b19ce5b54be723132a';
-export const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-export const TMDB_POSTER_URL = 'https://image.tmdb.org/t/p/original';
-export const TMDB_ITEM_URL =  'https://image.tmdb.org/t/p/w500';
+export const FIRE = JSON.parse(import.meta.env.VITE_FIRE);
+  
+export const API_KEY = import.meta.env.VITE_API_KEY;
+export const TMDB_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
+export const TMDB_POSTER_URL = import.meta.env.VITE_TMDB_POSTER_URL;
+export const TMDB_ITEM_URL =  import.meta.env.VITE_TMDB_ITEM_URL;
+export const BKND_URL = import.meta.env.VITE_BKND_URL;

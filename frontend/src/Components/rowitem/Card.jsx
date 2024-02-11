@@ -42,7 +42,7 @@ const Card = ({itemData,index,isLiked=false}) => {
 
   const addToFavourite = async () => {
     try {
-      await axios.post("http://localhost:8800/panoramix/v1/user/add", {
+      await axios.post("http://localhost:8800/api/v1/user/add", {
         email,
         data: itemData,
       });

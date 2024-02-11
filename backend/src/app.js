@@ -27,6 +27,6 @@ app.use(express.urlencoded({
 
 import { userRouter } from './routers/User.route.js';
 
-app.use("/panoramix/v1/user", userRouter);
+app.use("/api/v1/user", userRouter);
 
 export {app};

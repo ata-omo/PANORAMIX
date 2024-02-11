@@ -92,7 +92,7 @@ export const removeFromFavourite = createAsyncThunk(
     console.log(typeof(movieId));
     const {
       data: { movies },
-    } = await axios.put("http://localhost:8800/panoramix/v1/user/remove", {
+    } = await axios.put("http://localhost:8800/api/v1/user/remove", {
       email,
       movieId,
     });
@@ -104,7 +104,7 @@ export const removeFromFavourite = createAsyncThunk(
 export const getAllFavourites = createAsyncThunk(
   "panoramix/favourites",
   async (email) => {
-    const {data:{movies}} = await axios.get(`http://localhost:8800/panoramix/v1/user/favourites/${email}`);
+    const {data:{movies}} = await axios.get(`http://localhost:8800/api/v1/user/favourites/${email}`);
 
     // console.log("movies",movies);
     // console.log("email",email)
