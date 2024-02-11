@@ -5,7 +5,7 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import { useState, useEffect} from "react";
 import trailer from '../../assets/trailer.mp4'
 import { useNavigate } from 'react-router-dom';
-import { TMDB_ITEM_URL } from '../../utils/constants';
+import { RENDER_URL, TMDB_ITEM_URL } from '../../utils/constants';
 import { useDispatch } from "react-redux";
 import { removeFromFavourite } from "../../Store/slices";
 import axios from "axios";
@@ -42,7 +42,7 @@ const Card = ({itemData,index,isLiked=false}) => {
 
   const addToFavourite = async () => {
     try {
-      await axios.post("http://localhost:8800/api/v1/user/add", {
+      await axios.post(`${RENDER_URL}/api/v1/user/add`, {
         email,
         data: itemData,
       });
